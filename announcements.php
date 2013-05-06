@@ -80,7 +80,7 @@
 			<?php
 				//the user has logged in
 				if(isset($_SESSION['user'])){
-					//THIS PART HAS YET TO BE IMPLEMENTED
+					//THIS PART HAS YET TO BE IMPLEMENTED, testttt
 					print("<p>THE TEXT WITHIN THESE P TAGS IS PSEUDOCODE AND COMMENTS<br />");
 						print("1. Include a table of all of the current announcements listed on the homepage<br />");
 						print("2. Add interactiveness to each entry in the table so that each time a cell is clicked a form pops up<br />");
