@@ -1,0 +1,167 @@
+font-face {
+	font-family: Neou;
+    src: url("../fonts/Neou-Thin.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: Neou;
+	font-weight: bold;
+    src: url("../fonts/Neou-Bold.ttf") format("truetype");
+}
+
+font-face {
+	font-family: ProximaNova;
+    src: url("../fonts/ProximaNova-Regular.ptf");
+}
+
+@font-face {
+	font-family: ProximaNova;
+	font-weight: bold;
+    src: url("../fonts/ProximaNova-Bold.otf");
+}
+
+body {
+	font-family:'Roboto',"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	line-height: 150%;
+	text-align: justify;
+	background: url('../images/background.jpg');
+}
+
+#wrapper {
+	width: 1000px;
+	margin: 30px auto;
+	
+}
+
+#container {
+	color: #737373;
+	width: 800px;
+	height: 1000px;
+	margin-top: 110px;
+	padding: 20px 75px 0px 75px;
+}
+
+#banner {
+	display: block;
+	margin-left: -220px;
+	margin-top: -20px;
+}
+
+h1{
+	color: #95AABF;
+	font-family: ProximaNova, Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 250%;
+	line-height: 20px;
+}
+
+.anchor{
+	padding-top: 98	px;
+}
+
+#header{
+	background: url('../images/header.png');
+	font-family: Neou, Helvetica, sans-serif;
+	width:100%;
+	height: 110px;
+	display: block;
+	position: fixed;
+	top:0;
+	left:0;
+	-moz-box-shadow:    0px 1px 4px 1px #9C9A9A;
+	-webkit-box-shadow: 0px 1px 4px 1px #9C9A9A;
+	box-shadow:         0px 1px 4px 1px #9C9A9A;
+}
+
+#menuBar{
+    width:auto;
+    height:110px;
+    display:block;
+	z-index: 100;
+}
+
+#logo{
+	display: block;
+    float:left;
+	margin-top: 20px;
+	margin-left: 150px;
+}
+	
+#nav{
+    float:right;
+    margin-right: 250px;
+}
+
+#nav li {
+	list-style: none;
+	float: left;
+	position: relative;
+	font-size: 18px;
+	margin: 30px 20px;
+}	
+
+/*--- DROPDOWN ---*/
+#nav ul{
+	list-style:none;
+	position:absolute;
+	left:-9999px;
+	background: #717375;
+}
+
+#nav ul li{
+	float:none;
+	margin-left: -25px;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 5px;
+}
+
+#nav ul a{
+	white-space:nowrap;
+}
+
+#nav li:hover ul{ 
+	left: 0;
+}
+
+#nav li:hover {
+	color: #b3d4fc;
+}
+
+#nav li:hover a {
+	color: #b3d4fc;
+}
+
+#nav li a {
+	color: #000;
+	text-decoration: none;
+}
+
+#nav li:hover ul a{ 
+	text-decoration:none;
+	color: #FFF;
+}
+#nav li:hover ul li a:hover{
+	text-decoration: none;
+	color:#b3d4fc;
+}
+
+.current {
+	color:#b3d4fc;
+}
+
+/*---Footer---*/
+#footer{
+	display: block;
+	background: #6baed6;
+	padding: 30px 0 10px 0;
+	height: 100px
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	font-size: 10px;
+	line-height: 12px;
+	text-align: center;
+}
+
