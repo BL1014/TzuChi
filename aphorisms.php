@@ -106,7 +106,6 @@
 				//the user has not logged in
 				else{
 					print("<p>You haven't logged in yet. Please log in at <a href=\"admin.php\">this page</a></p>");
-					include("mysqli.php");
 				}
 			?>
 			
