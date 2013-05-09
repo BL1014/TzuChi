@@ -106,6 +106,19 @@
 				//the user has not logged in
 				else{
 					print("<p>You haven't logged in yet. Please log in at <a href=\"admin.php\">this page</a></p>");
+					
+					print("<form enctype='multipart/form-data' action='upload.php' id='upform' name='upform' method='POST'>
+					Choose a photo (gif, jpeg/jpg, or png under 5MB) to upload:<br/>
+					<input type='file' name='photo' id='photo'/><br/>
+					Please enter caption:<br/>
+					<textarea name='ucaption' maxlength='255' rows='5' cols='40' wrap='virtual' form='upform'></textarea><br/>
+					Select an album:<select name='album'>");
+					include("albumdropdown.php");
+					print("<option value='1'>test</option>");
+					print("</select><br/>
+					<input type='submit' name='upload' value='Upload Photo' />
+					</form>
+					<br/>");
 				}
 			?>
 			

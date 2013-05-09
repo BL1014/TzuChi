@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	require("inc/doctype.php");
+	require("tablet.php");
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -8,6 +9,8 @@
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="styles/main.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="announcements.js"></script>
         <title>Admin | Cornell Tzu Chi</title>
     </head>
 
@@ -74,21 +77,32 @@
 		</div>
 		
 		<div id="container">
-	
+			
+			<div id="container1">
+			
 			<h1>Announcements</h1>
 			
 			<?php
 				//the user has logged in
 				if(isset($_SESSION['user'])){
-					//THIS PART HAS YET TO BE IMPLEMENTED, testttt
-					print("<p>THE TEXT WITHIN THESE P TAGS IS PSEUDOCODE AND COMMENTS<br />");
-						print("1. Include a table of all of the current announcements listed on the homepage<br />");
-						print("2. Add interactiveness to each entry in the table so that each time a cell is clicked a form pops up<br />");
-						print("3. The form that pops up will allow Eboard member to enter new announcement information<br />");
-						print("4. Upon keyup, the information will be updated to the file using AJAX<br />");
-						print("5. The table will now reflect the changes<br />");
-						print("6. The Eboard member can then also view the permanent changes to the announcements on the homepage<br />");
-					print("</p>");
+					//THIS PART HAS YET TO BE IMPLEMENTED
+					$atable = new Tablet();
+					$atable->tableheader = array("Title", "Announcement", "Delete");
+					$myarray = file("files/announcements.txt");
+					$mainarray = array();
+					$tracker=1;
+					while(count($myarray)>1){
+						$temparray = array();
+						$temparray[]= $myarray[0];
+						$temparray[]= $myarray[1];
+						$temparray[]= "<input type=\"button\" name=\"a".$tracker."\" value=\"Delete\"/>";
+						$current = count($myarray);
+						$myarray = array_slice($myarray, 2, $current - 2);
+						$mainarray[]=$temparray;
+						$tracker = $tracker + 1;
+					}
+					$atable->tabledata=$mainarray;
+					$atable->displayTable();
 				}
 				//the user has not logged in
 				else{
@@ -97,14 +111,28 @@
 
 			?>
 			
+			</div>
+			
+			<div id="container2">
+			
+			<h1>Add New</h1>
+			
+			<form action="newannouncement.php" method="get" >
+				<label>Title:</label>
+				<input type="text" name="title" id="title" /><br /><br />
+				<label>Announcement:</label><br />
+				<textarea name="announcement" id="announcement" rows="10" cols="50"></textarea><br /><br />
+				<input type="button" value="Add This Announcement" id="addButton" name="addButton" /> 
+			</form> 
+			
+			</div>
 			
 		</div>
 		
-		
-		
 		</div>
 		
 		</div>
+		
 		
 		<?php
 			require("inc/footer.php");

@@ -85,9 +85,26 @@
 					if(isset($_POST['submit'])){
 						//the form inputs are complete
 						if(htmlentities($_POST['date'])!="" && htmlentities($_POST['message'])!="" && 
-						preg_match("/^([12][0-9][0-9]-[0-9]-[01][0-9]-[0-3][0-9])$/", htmlentities($_POST['date']))){
+						preg_match("/^([12][0-9][0-9][0-9]-[01][0-9]-[0-3][0-9])$/", htmlentities($_POST['date']))){
 							print("<p>You have successfully submitted your Eboard Meeting Minutes. Feel free to submit more minutes if needed.</p>");
 							//open file and write meeting minutes on it
+							$fp = fopen("files/minutes.txt", "a");
+							$string = "Minutes for: ".htmlentities($_POST['date'])."\n\n";
+							fputs($fp, $string);
+							$string2 = htmlentities($_POST['message']);
+							$moresentences = true;
+							while ($moresentences) {
+								$position = strpos($string2, ".");
+								if(!$position){
+									$moresentences=false;
+								}
+								else {
+									$tempstring = substr($string2, 0, $position+1);
+									fputs($fp, $tempstring."\n");
+									$string2 = substr($string2, $position+2);
+								}
+							}
+							fputs($fp, "\n\n");
 						}
 						//the form inputs are incomplete or in an incorrect format
 						else {

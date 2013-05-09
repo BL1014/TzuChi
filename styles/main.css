@@ -37,9 +37,23 @@ body {
 #container {
 	color: #737373;
 	width: 800px;
-	height: 1000px;
+	height: 1500px;
 	margin-top: 110px;
 	padding: 20px 75px 0px 75px;
+}
+
+#container1 {
+	float: left;
+	width: 375px;
+	height: 900px;
+	padding-right: 10px;
+}
+
+#container2 {
+	float: right;
+	width: 375px;
+	height: 900px;
+	padding-left: 10px;
 }
 
 #banner {

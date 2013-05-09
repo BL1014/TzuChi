@@ -98,8 +98,8 @@
 					print("<p>You have successfully submitted your message to Cornell Tzu Chi. We will get back to you as soon as possible. Feel free to submit
 					another message</p>");
 					//send email to Tzu Chi inbox 
-					$to = "cornelltzuching@gmail.com";
-				    $subject = htmlentities($_POST['reason'])." from ".htmlentities($_POST['name'])."(".htmlentities($POST['email']).")";
+					$to = "rc526@cornell.edu";
+				    $subject = "\"".htmlentities($_POST['reason'])."\""." message from ".htmlentities($_POST['name'])." (".htmlentities($_POST['email']).")";
 				    $message = "".htmlentities($_POST['message']);
 				    mail($to,$subject,$message);
 				}

@@ -84,6 +84,25 @@
 			The Tzu Chi (TC) chapter here at Cornell mainly focuses on Charity, Culture, and Education. We tutor children from Ithaca Chinese School, volunteer at a nursing home right here in Ithaca, and help raise money to aid disaster relief. In addition to volunteering, we are a social group on campus that holds fun bonding events. Past events include movie night, Chinese New Year's celebration, Chimes tour, and home cooked vegetarian dinners by the E-board! Please sign-up on our listserv to find out more about us.
 		</p>
 		
+		<h1>Announcements</h1>
+		
+		<?php
+			//get all of the announcements and print them 
+			$myarray = file("files/announcements.txt");
+			$index = 1;
+			foreach ($myarray as $line) {
+				if ($index % 2 == 0) {
+					//use paragraph tags because it is the announcement content
+					print("<p>".$line."</p>");
+				}
+				else {
+					//use header tags because it is the title of the announcement
+					print("<h2>".$line."</h2>");
+				}
+				$index =$index +1;
+			}
+		?>
+		
 		</div>
 		
 		</div>
