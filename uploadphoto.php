@@ -16,15 +16,12 @@
 			} else {
 				$name= basename($_FILES['photo']['name']);
 				$eid= $_POST['event'];
-				$eventq= "SELECT * FROM Events WHERE eid=$eid";
-				$event= $mysqli->query($eventq);
-				$earray= $event->fetch_assoc();
-				$ename= $earray['e_name'];
-				if (file_exists("Photos/" .$ename. "/" . $name)) {
-					print("Photos/" .$ename. "/" . $name. " already exists.");
+
+				if (file_exists("photos/" . $name)) {
+					print("photos/" . $name . " already exists.");
 				} else {
-					$path= "Photos/";
-					$path= $path.$ename."/".$name;
+					$path= "photos/";
+					$path= $path.$name;
 					if (move_uploaded_file($_FILES['photo']['tmp_name'], $path)) {
 						print("The photo " .$name. " has been uploaded successfully.<br/>");
 						$caption= cleanInput($_POST['caption']);
