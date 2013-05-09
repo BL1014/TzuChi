@@ -75,8 +75,7 @@
 		
 		<div id="container">
 			<h1>PAST EVENTS</h1>
-			<?php 
-				include("cleaninput.php");
+			<?php
 				print("<form action='past.php' method='post' id='pickevent' name='pickevent'>");
 				print("Event:<select name='event'>");
 				$mysqli= new mysqli('', 'Renas_fangirls', 'wh83rq01vpu', 'info230_SP13FP_Renas_fangirls');
@@ -87,7 +86,9 @@
 				print("</select><br />
 				<input type='submit' name='submitEvent' value='View Photos'/>
 				</form>");
-				$mysqli->close();	
+				$mysqli->close();
+				
+				include("viewphotos.php");
 			?>
 		</div>
 		

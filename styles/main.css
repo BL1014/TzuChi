@@ -164,6 +164,30 @@ h1{
 .current {
 	color:#b3d4fc;
 }
+/*---Images---*/
+
+#image{
+	margin: 5px;
+	border: 1px solid black;
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-moz-box-shadow:	3px 3px 1px 1px #ccc;
+	-webkit-box-shadow: 3px 3px 1px 1px #ccc;
+	box-shadow: 		3px 3px 1px 1px #ccc;
+	height: auto;
+	width: auto;
+	float: left;
+	text-align: center;
+}	
+
+#image img{
+	display: block;
+	margin: 10px;
+	width:auto;
+	height:200px;
+	border: 1px solid gray;
+	overflow:hidden;
+}
 
 /*---Footer---*/
 #footer{
