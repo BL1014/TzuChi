@@ -18,7 +18,7 @@
 		
 		<div id="header">
 		<div id="menuBar">
-		<a href="index.php"> <img id="logo" src="images/logo.png" alt="Tzu Chu Logo" width="130" height="80"/> </a>
+		<a href="index.php"> <img id="logo" src="images/logo.png" alt="Tzu Chi Logo" width="130" height="80"/> </a>
 		
 		<div id="nav_container">
 			<div class="rectangle">
@@ -64,7 +64,7 @@
 								</li>
 								<li><a href="minutes.php">EBOARD MINUTES</a></li>
 								<li><a href="announcements.php">ANNOUNCEMENTS</a></li>
-								<li><a href="photos.php">PHOTOS</a></li>
+								<li><a href="photos.php">PHOTOS AND EVENTS</a></li>
 								<li><a href="aphorisms.php">APHORISMS</a></li>
 							</ul>
 					</li>
@@ -76,30 +76,46 @@
 		
 		<div id="container">
 	
-			<h1>Photos</h1>
+		<h1>Photo and Event Management</h1>
 			
 			<?php
+				// clean up user input
+				function cleanInput($input) {           
+					$input= mysql_real_escape_string($input);
+					$input= htmlentities($input);
+					return $input;
+				}
+				
 				//the user has logged in
 				if(isset($_SESSION['user'])){
 					//the user has submitted a new photo
-					if(isset($_POST['submit'])){
+					if(isset($_POST['submitPhoto'])){
 						//CHECK TO SEE THAT FORM INPUTS ARE CORRECT
 						//ADD PHOTO TO DATABASE
+						include("uploadphoto.php");
 					}
-					//the user has not submitted a new photo yet
-					else {
-						print("<p>Use the following form to upload a new photo.</p>");
-					}
+				
 					//include form to upload a photo as long as the user has logged in
 					//IMPLEMENT CORRECT FORM
 					print("<form action=\photos.php\" method=\"post\" enctype=\"multipart/form-data\">");
-							print("<p>");
-								print("<p>File:<input type=\"file\" name=\"photo\" id=\"photo\"/><br />");
-								print("Caption:<input type=\"text\" name=\"caption\"/><br />");
-								print("Album:<input type=\"text\" name=\"album\"/><br />");
-								print("Event:<input type=\"text\" name=\"event\"/><br />");
-								print("<input type=\"submit\" name=\"submit\" value=\"Upload Photo\"/>");
-							print("</p>");
+						print("<p>");
+							print("<h2>Use the following form to upload a new photo.</h2>");
+							print("Photo:<input type=\"file\" name=\"photo\" id=\"photo\"/><br />
+							(gif, jpeg/jpg, or png under 5MB)<br/>");
+							print("Caption:<textarea name='caption' maxlength='255' rows='5' cols='40' wrap='virtual' form='photo'></textarea><br/>");
+							print("Event:<select name='event'>");
+							$mysqli= new mysqli('', 'Renas_fangirls', 'wh83rq01vpu', 'info230_SP13FP_Renas_fangirls');
+							$result= $mysqli->query("SELECT * FROM Events");
+							while($array= $result->fetch_assoc()) {
+								print("<option value='".$array['eid']."'>".$array['e_name']."</option>");
+							}
+							print("</select><br />
+							<input type=\"submit\" name=\"submitPhoto\" value=\"Upload Photo\"/>");
+							
+							print("<h2>Use the following form to create a new event.</h2>");
+							
+							$mysqli->close();
+						print("</p>");
 					print("</form>");
 				}
 				//the user has not logged in

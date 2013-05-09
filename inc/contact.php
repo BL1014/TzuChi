@@ -16,7 +16,7 @@
 		
 		<div id="header">
 		<div id="menuBar">
-		<a href="index.php"> <img id="logo" src="images/logo.png" alt="Tzu Chu Logo" width="125" height="65"/> </a>
+		<a href="index.php"> <img id="logo" src="images/logo.png" alt="Tzu Chi Logo" width="125" height="65"/> </a>
 		
 		<div id="nav_container">
 			<div class="rectangle">

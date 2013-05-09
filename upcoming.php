@@ -18,7 +18,7 @@
 		
 		<div id="header">
 		<div id="menuBar">
-		<a href="index.php"> <img id="logo" src="images/logo.png" alt="Tzu Chu Logo" width="125" height="65"/> </a>
+		<a href="index.php"> <img id="logo" src="images/logo.png" alt="Tzu Chi Logo" width="125" height="65"/> </a>
 		
 		<div id="nav_container">
 			<div class="rectangle">
@@ -64,7 +64,7 @@
 								</li>
 								<li><a href="minutes.php">EBOARD MINUTES</a></li>
 								<li><a href="announcements.php">ANNOUNCEMENTS</a></li>
-								<li><a href="photos.php">PHOTOS</a></li>
+								<li><a href="photos.php">PHOTOS AND EVENTS</a></li>
 								<li><a href="aphorisms.php">APHORISMS</a></li>
 							</ul>
 					</li>					

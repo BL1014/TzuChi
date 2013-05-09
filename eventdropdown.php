@@ -8,6 +8,6 @@
 		while($array= $result->fetch_assoc()) {
 			print("<option value='".$array['e_name']."'>".$array['e_name']."</option>");
 		}
-		$myqli->close();
+		$mysqli->close();
 	}
 ?>
