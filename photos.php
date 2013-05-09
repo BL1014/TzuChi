@@ -78,14 +78,7 @@
 	
 		<h1>Photo and Event Management</h1>
 			
-			<?php
-				// clean up user input
-				function cleanInput($input) {           
-					$input= mysql_real_escape_string($input);
-					$input= htmlentities($input);
-					return $input;
-				}
-				
+			<?php	
 				//the user has logged in
 				if(isset($_SESSION['user'])){
 					//the user has submitted a new photo
@@ -94,15 +87,19 @@
 						//ADD PHOTO TO DATABASE
 						include("uploadphoto.php");
 					}
+					if(isset($_POST['createEvent'])){
+						include("createevent.php");
+					}
 				
 					//include form to upload a photo as long as the user has logged in
 					//IMPLEMENT CORRECT FORM
-					print("<form action=\photos.php\" method=\"post\" enctype=\"multipart/form-data\">");
+					
 						print("<p>");
 							print("<h2>Use the following form to upload a new photo.</h2>");
+							print("<form action='photos.php' method=\"post\" enctype=\"multipart/form-data\" id='photoform' name='photoform'>");
 							print("Photo:<input type=\"file\" name=\"photo\" id=\"photo\"/><br />
 							(gif, jpeg/jpg, or png under 5MB)<br/>");
-							print("Caption:<textarea name='caption' maxlength='255' rows='5' cols='40' wrap='virtual' form='photo'></textarea><br/>");
+							print("Caption:<br/><textarea name='caption' maxlength='255' rows='5' cols='40' wrap='virtual' form='photoform'></textarea><br/>");
 							print("Event:<select name='event'>");
 							$mysqli= new mysqli('', 'Renas_fangirls', 'wh83rq01vpu', 'info230_SP13FP_Renas_fangirls');
 							$result= $mysqli->query("SELECT * FROM Events");
@@ -110,9 +107,17 @@
 								print("<option value='".$array['eid']."'>".$array['e_name']."</option>");
 							}
 							print("</select><br />
-							<input type=\"submit\" name=\"submitPhoto\" value=\"Upload Photo\"/>");
+							<input type=\"submit\" name=\"submitPhoto\" value=\"Upload Photo\"/>
+							</form>");
 							
 							print("<h2>Use the following form to create a new event.</h2>");
+							//eid, e_date, e_name, e_desc
+							print("<form action='photos.php' method='post' name='eventform' id='eventform'>");
+							print("Name:<input type='text' name='eventname'><br/>");
+							print("Date:<input type='date' name='eventdate'><br/>");
+							print("Description:<br/><textarea name='eventdesc' maxlength='1024' rows='5' cols='40' wrap='virtual' form='eventform'></textarea><br/>");
+							print("<input type='submit' name='createEvent' value='Create Event'/>
+							</form>");
 							
 							$mysqli->close();
 						print("</p>");
