@@ -37,8 +37,7 @@
 							<ul>
 								<li><a href="calendar.php">CALENDAR</a></li>
 								<li><a href="upcoming.php">UPCOMING EVENTS</a></li>
-								<li><a href="past.php">PAST EVENTS</a></li>
-								<li><a href="media.php">MEDIA</a></li>
+								<li><a href="past.php">PAST EVENTS AND PHOTOS</a></li>
 							</ul>
 					</li>
 					<li id="resources">
@@ -63,7 +62,7 @@
 								</li>
 								<li><a href="minutes.php">EBOARD MINUTES</a></li>
 								<li><a href="announcements.php">ANNOUNCEMENTS</a></li>
-								<li><a href="photos.php">PHOTOS AND EVENTS</a></li>
+								<li><a href="photos.php">EVENTS AND PHOTOS</a></li>
 								<li><a href="aphorisms.php">APHORISMS</a></li>
 							</ul>
 					</li>
@@ -74,12 +73,12 @@
 		</div>
 		
 		<div id="container">
-			<h1>PAST EVENTS</h1>
+			<h1>PAST EVENTS AND PHOTOS</h1>
 			<?php
 				print("<form action='past.php' method='post' id='pickevent' name='pickevent'>");
 				print("Event:<select name='event'>");
 				$mysqli= new mysqli('', 'Renas_fangirls', 'wh83rq01vpu', 'info230_SP13FP_Renas_fangirls');
-				$result= $mysqli->query("SELECT * FROM Events");
+				$result= $mysqli->query("SELECT * FROM Events WHERE e_date < CURDATE()");
 				while($array= $result->fetch_assoc()) {
 					print("<option value='".$array['eid']."'>".$array['e_name']."</option>");
 				}

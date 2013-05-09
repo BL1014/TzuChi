@@ -36,8 +36,7 @@
 							<ul>
 								<li><a href="calendar.php">CALENDAR</a></li>
 								<li><a href="upcoming.php">UPCOMING EVENTS</a></li>
-								<li><a href="past.php">PAST EVENTS</a></li>
-								<li><a href="media.php">MEDIA</a></li>
+								<li><a href="past.php">PAST EVENTS AND PHOTOS</a></li>
 							</ul>
 					</li>
 					<li id="resources">

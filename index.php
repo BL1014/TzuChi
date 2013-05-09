@@ -37,8 +37,7 @@
 							<ul>
 								<li><a href="calendar.php">CALENDAR</a></li>
 								<li><a href="upcoming.php">UPCOMING EVENTS</a></li>
-								<li><a href="past.php">PAST EVENTS</a></li>
-								<li><a href="media.php">MEDIA</a></li>
+								<li><a href="past.php">PAST EVENTS AND PHOTOS</a></li>
 							</ul>
 					</li>
 					<li id="resources">
@@ -63,7 +62,7 @@
 								</li>
 								<li><a href="minutes.php">EBOARD MINUTES</a></li>
 								<li><a href="announcements.php">ANNOUNCEMENTS</a></li>
-								<li><a href="photos.php">PHOTOS AND EVENTS</a></li>
+								<li><a href="photos.php">EVENTS AND PHOTOS</a></li>
 								<li><a href="aphorisms.php">APHORISMS</a></li>
 							</ul>
 					</li>

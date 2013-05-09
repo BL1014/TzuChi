@@ -38,8 +38,7 @@
 							<ul>
 								<li><a href="calendar.php">CALENDAR</a></li>
 								<li><a href="upcoming.php">UPCOMING EVENTS</a></li>
-								<li><a href="past.php">PAST EVENTS</a></li>
-								<li><a href="media.php">MEDIA</a></li>
+								<li><a href="past.php">PAST EVENTS AND PHOTOS</a></li>
 							</ul>
 					</li>
 					<li id="resources">
@@ -64,7 +63,7 @@
 								</li>
 								<li><a href="minutes.php">EBOARD MINUTES</a></li>
 								<li><a href="announcements.php">ANNOUNCEMENTS</a></li>
-								<li><a href="photos.php">PHOTOS AND EVENTS</a></li>
+								<li><a href="photos.php">EVENTS AND PHOTOS</a></li>
 								<li><a href="aphorisms.php">APHORISMS</a></li>
 							</ul>
 					</li>
@@ -93,7 +92,6 @@
 				
 					//include form to upload a photo as long as the user has logged in
 					//IMPLEMENT CORRECT FORM
-					
 						print("<p>");
 							print("<h2>Use the following form to upload a new photo.</h2>");
 							print("<form action='photos.php' method=\"post\" enctype=\"multipart/form-data\" id='photoform' name='photoform'>");
@@ -111,7 +109,7 @@
 							</form>");
 							
 							print("<h2>Use the following form to create a new event.</h2>");
-							//eid, e_date, e_name, e_desc
+							
 							print("<form action='photos.php' method='post' name='eventform' id='eventform'>");
 							print("Name (required):<input type='text' name='eventname'><br/>");
 							print("Date (required):<input type='date' name='eventdate'><br/>");
@@ -129,14 +127,8 @@
 				}
 
 			?>
-			
-			
 		</div>
-		
-		
-		
 		</div>
-		
 		</div>
 		
 		<?php
