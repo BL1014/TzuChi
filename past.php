@@ -75,7 +75,20 @@
 		
 		<div id="container">
 			<h1>PAST EVENTS</h1>
-			<p>Content</p>
+			<?php 
+				include("cleaninput.php");
+				print("<form action='past.php' method='post' id='pickevent' name='pickevent'>");
+				print("Event:<select name='event'>");
+				$mysqli= new mysqli('', 'Renas_fangirls', 'wh83rq01vpu', 'info230_SP13FP_Renas_fangirls');
+				$result= $mysqli->query("SELECT * FROM Events");
+				while($array= $result->fetch_assoc()) {
+					print("<option value='".$array['eid']."'>".$array['e_name']."</option>");
+				}
+				print("</select><br />
+				<input type='submit' name='submitEvent' value='View Photos'/>
+				</form>");
+				$mysqli->close();	
+			?>
 		</div>
 		
 		

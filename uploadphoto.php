@@ -3,7 +3,7 @@
 	$allowed   = array("gif", "jpeg", "jpg", "png");
 	$extension = end(explode(".", $_FILES['photo']['name']));
 	$mysqli= new mysqli('', 'Renas_fangirls', 'wh83rq01vpu', 'info230_SP13FP_Renas_fangirls');
-	if(isset($_FILES['photo']) && isset($_POST['event'])) {
+	if(isset($_FILES['photo']) && isset($_POST['event']) && $_POST['event']!='') {
 		if ((($_FILES['photo']['type'] == "image/gif") || 
 			($_FILES['photo']['type'] == "image/jpeg") || 
 			($_FILES['photo']['type'] == "image/jpg") || 
