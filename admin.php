@@ -3,7 +3,7 @@
 	session_start();
 	
 	//check to see if the user has logged in
-	if(isset($_POST['submit']) && htmlentities($_POST['username'])=="administrator" && htmlentities($_POST['password']=="password")){
+	if(isset($_POST['submit']) && htmlentities($_POST['password']=="password")){
 		$_SESSION['user']="administrator";
 	}
 	
@@ -100,19 +100,18 @@
 					//the user has not logged in
 					else {
 						if(isset($_POST['submit'])){
-							print("<p>Your username and/or password is incorrect, please try again.</p>");
+							print("<p>Your password is incorrect, please try again.</p>");
 						} 
 						else {
 							if(isset($_SESSION['logout'])){
 								print("<p>Thank you for logging out. Feel free to log back in below.</p>");
 								unset($_SESSION['logout']);
 							}
-							else{print("<p>Please enter your username and password to login and access the administrator functionalities of this site.</p>");}
+							else{print("<p>Please enter your password to login and access the administrator functionalities of this site.</p>");}
 						}
 						//print the form since the user has not logged in
 						print("<form action=\"admin.php\" method=\"post\">");
-							print("<p>Username:<input type=\"text\" name=\"username\"/><br/>");
-							print("Password:<input type=\"text\" name=\"password\"/><br/>");
+							print("Password:<input type=\"password\" name=\"password\"/><br/>");
 							print("<input name=\"submit\" type=\"submit\" value=\"Submit\"/><br/></p>");
 						print("</form>");
 					}

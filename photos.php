@@ -82,17 +82,26 @@
 				if(isset($_SESSION['user'])){
 					//the user has submitted a new photo
 					if(isset($_POST['submitPhoto'])){
-						//CHECK TO SEE THAT FORM INPUTS ARE CORRECT
-						//ADD PHOTO TO DATABASE
+						// VALIDATE INPUT AND ADD PHOTO TO DATABASE
 						include("uploadphoto.php");
 					}
 					if(isset($_POST['createEvent'])){
+						// VALIDATE INPUT AND CREATE EVENT
 						include("createevent.php");
 					}
 				
 					//include form to upload a photo as long as the user has logged in
 					//IMPLEMENT CORRECT FORM
 						print("<p>");
+							print("<h2>Use the following form to create a new event.</h2>");
+							
+							print("<form action='photos.php' method='post' name='eventform' id='eventform'>");
+							print("Name (required):<input type='text' name='eventname'><br/>");
+							print("Date (required):<input type='date' name='eventdate'><br/>");
+							print("Description (required):<br/><textarea name='eventdesc' maxlength='1024' rows='5' cols='40' wrap='virtual' form='eventform'></textarea><br/>");
+							print("<input type='submit' name='createEvent' value='Create Event'/>
+							</form>");
+							
 							print("<h2>Use the following form to upload a new photo.</h2>");
 							print("<form action='photos.php' method=\"post\" enctype=\"multipart/form-data\" id='photoform' name='photoform'>");
 							print("Photo (required):<input type=\"file\" name=\"photo\" id=\"photo\"/><br />
@@ -108,18 +117,8 @@
 							<input type=\"submit\" name=\"submitPhoto\" value=\"Upload Photo\"/>
 							</form>");
 							
-							print("<h2>Use the following form to create a new event.</h2>");
-							
-							print("<form action='photos.php' method='post' name='eventform' id='eventform'>");
-							print("Name (required):<input type='text' name='eventname'><br/>");
-							print("Date (required):<input type='date' name='eventdate'><br/>");
-							print("Description (required):<br/><textarea name='eventdesc' maxlength='1024' rows='5' cols='40' wrap='virtual' form='eventform'></textarea><br/>");
-							print("<input type='submit' name='createEvent' value='Create Event'/>
-							</form>");
-							
 							$mysqli->close();
 						print("</p>");
-					print("</form>");
 				}
 				//the user has not logged in
 				else{
