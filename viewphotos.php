@@ -17,7 +17,7 @@
 			while($array= $result->fetch_assoc() ) {
 				print("<div id='image'>
 				<img src='".$array['url']."' alt='".$array['pid']."'/>
-				<p>Caption: ".$array['p_desc']."</p></div>");
+				<p>&nbsp;&nbsp;Caption: ".$array['p_desc']."</p></div>");
 			}
 		}
 	}

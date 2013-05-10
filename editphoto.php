@@ -8,7 +8,9 @@
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="styles/main.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Constitution | Cornell Tzu Chi</title>
+		<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="photos.js"></script>
+        <title>Admin | Cornell Tzu Chi</title>
     </head>
 
 
@@ -23,7 +25,7 @@
 		<div id="nav_container">
 			<div class="rectangle">
 				<ul id="nav">
-					<li class="current" id="about">
+					<li id="about">
 						About
 							<ul>
 								<li><a href="mission.php">MISSION</a></li>
@@ -39,6 +41,7 @@
 								<li><a href="calendar.php">CALENDAR</a></li>
 								<li><a href="upcoming.php">UPCOMING EVENTS</a></li>
 								<li><a href="past.php">PAST EVENTS AND PHOTOS</a></li>
+
 							</ul>
 					</li>
 					<li id="resources">
@@ -49,7 +52,7 @@
 								<li><a href="http://www.daai.tv/2011web/main/">DA AI TV</a></li>
 							</ul>
 					</li>
-					<li id="contact">
+					<li class="current" id="contact">
 						<a href="contact.php">Contact Us</a>
 					</li>
 					<li id="admin">
@@ -74,11 +77,59 @@
 		</div>
 		
 		<div id="container">
-		
-		<div id="about_constitution">
-			<a id="constitution"></a>
-				<h1>CONSTITUTION</h1>
-				<p>Content</p>
+	
+			<div id="container0">
+			<h1>Event/Photo Edit</h1>
+			<a href="edit.php"> <button> Choose Another Event to Edit </button> </a>
+			</div>
+			
+			
+			<?php
+				if(isset($_POST['event'])|| isset($_GET['event'])) {
+					
+					$mysqli= new mysqli('', 'Renas_fangirls', 'wh83rq01vpu', 'info230_SP13FP_Renas_fangirls');
+					if(isset($_POST['event'])){$eid= $_POST['event'];}
+					else{$eid=$_GET['event'];}
+					$query= "SELECT * FROM Events NATURAL JOIN ofEvent NATURAL JOIN Photos WHERE ofEvent.eid=$eid";
+					$result= $mysqli->query($query);
+					$query2= "SELECT * FROM Events WHERE eid=$eid";
+					$result2= $mysqli->query($query2);
+					$array= $result2->fetch_assoc();
+					
+					print("<div id='container1'>");
+					print("<h2>Edit Event Information</h2>");
+					print("<p id='ename'>".$array['e_name'].":</p>");
+					print("<form>");
+						print("<input type='text' name='eventname' id='eventname'/>");
+						print("<input type='button' value='Change Event Name' name='button1' id='button1'/>");
+					print("</form>");
+					
+					print("<p>".$array['e_desc']."</p>");
+					print("<form>");
+						print("<textarea name='eventdescription' id='eventdescription' rows='10' cols='40'></textarea><br />");
+						print("<input type='button' value='Change Event Description' name='button2' id='button2'/>");
+					print("</form>");
+					print("</div>");
+					
+					print("<div id='container2'>");
+					print("<h2>Edit Photos<br/></h2>");
+					printPhotos($result);
+					print("</div>");
+				}
+				
+				function printPhotos($result) {
+					if ($result && $result->num_rows > 0) {
+						while($array= $result->fetch_assoc() ) {
+							print("<div id='image'>
+							<img src='".$array['url']."' alt='".$array['pid']."'/>
+							<p>Caption: ".$array['p_desc']."</p>
+							<input type=\"button\" name=\"".$array['pid']."\" value=\"Delete From Event Album\"/></div>");
+						}
+					}
+				}
+			?>
+			
+			
 		</div>
 		
 		
@@ -92,3 +143,7 @@
 		?>
 	</body>
 </html>
+
+
+
+

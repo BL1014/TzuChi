@@ -63,8 +63,8 @@
 								</li>
 								<li><a href="minutes.php">EBOARD MINUTES</a></li>
 								<li><a href="announcements.php">ANNOUNCEMENTS</a></li>
-								<li><a href="photos.php">EVENTS AND PHOTOS</a></li>
-								<li><a href="aphorisms.php">APHORISMS</a></li>
+								<li><a href="new.php">NEW EVENTS/PHOTOS</a></li>
+								<li><a href="edit.php">EDIT EVENTS/PHOTOS</a></li>
 							</ul>
 					</li>
 				</ul>
@@ -75,7 +75,9 @@
 		
 		<div id="container">
 	
+		<div id="container0">
 		<h1>Photo and Event Management</h1>
+		</div>
 			
 			<?php	
 				//the user has logged in
@@ -90,20 +92,25 @@
 						include("createevent.php");
 					}
 				
-					//include form to upload a photo as long as the user has logged in
-					//IMPLEMENT CORRECT FORM
-						print("<p>");
-							print("<h2>Use the following form to create a new event.</h2>");
+					//include form to upload a photo and add an event as long as the user has logged in
+					
+						print("<div id='container1'>");
+						
+							print("<h2>Create a New Event</h2>");
 							
-							print("<form action='photos.php' method='post' name='eventform' id='eventform'>");
+							print("<form action='new.php' method='post' name='eventform' id='eventform'>");
 							print("Name (required):<input type='text' name='eventname'><br/>");
 							print("Date (required):<input type='date' name='eventdate'><br/>");
 							print("Description (required):<br/><textarea name='eventdesc' maxlength='1024' rows='5' cols='40' wrap='virtual' form='eventform'></textarea><br/>");
 							print("<input type='submit' name='createEvent' value='Create Event'/>
 							</form>");
+						
+						print("</div>");
+						
+						print("<div id='container2'>");
 							
-							print("<h2>Use the following form to upload a new photo.</h2>");
-							print("<form action='photos.php' method=\"post\" enctype=\"multipart/form-data\" id='photoform' name='photoform'>");
+							print("<h2>Upload a New Photo</h2>");
+							print("<form action='new.php' method=\"post\" enctype=\"multipart/form-data\" id='photoform' name='photoform'>");
 							print("Photo (required):<input type=\"file\" name=\"photo\" id=\"photo\"/><br />
 							(gif, jpeg/jpg, or png under 5MB)<br/>");
 							print("Caption (optional):<br/><textarea name='caption' maxlength='255' rows='5' cols='40' wrap='virtual' form='photoform'></textarea><br/>");
@@ -118,7 +125,7 @@
 							</form>");
 							
 							$mysqli->close();
-						print("</p>");
+						print("</div>");
 				}
 				//the user has not logged in
 				else{

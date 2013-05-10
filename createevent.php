@@ -13,9 +13,9 @@
 		VALUES('','".$edate."','".$ename."','".$edesc."')";
 		$mysqli->query($query);
 		
-		print("Event successfully created.");
+		print("<div id='container0'>Event successfully created.</div>");
 	} else {
-		print("Your form is incomplete. Please fill out everything.");
+		print("<div id='container0'>Your form is incomplete. Please fill out everything.</div>");
 	}
 	$mysqli->close();
 ?>

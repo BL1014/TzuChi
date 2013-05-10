@@ -1,7 +1,6 @@
 <?php
 	session_start();
 	require("inc/doctype.php");
-	require("tablet.php");
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -10,9 +9,10 @@
 		<link rel="stylesheet" type="text/css" href="styles/main.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="announcements.js"></script>
+		<script type="text/javascript" src="photos.js"></script>
         <title>Admin | Cornell Tzu Chi</title>
     </head>
+
 
 
 	<body>
@@ -76,74 +76,87 @@
 		</div>
 		
 		<div id="container">
-			
+	
 			<div id="container0">
-			
-			<h1>Announcements</h1>
-			
+			<h1>Event/Photo Edit</h1>
 			</div>
-			
-			
 			
 			
 			<?php
 				//the user has logged in
 				if(isset($_SESSION['user'])){
-				
-					print("<div id=\"container1\">");
-					print("<h2>Delete Existing Announcements</h2>");
-				
-					//THIS PART HAS YET TO BE IMPLEMENTED
-					$atable = new Tablet();
-					$atable->tableheader = array("Title", "Announcement", "Delete");
-					$myarray = file("files/announcements.txt");
-					$mainarray = array();
-					$tracker=1;
-					while(count($myarray)>1){
-						$temparray = array();
-						$temparray[]= $myarray[0];
-						$temparray[]= $myarray[1];
-						$temparray[]= "<input type=\"button\" name=\"a".$tracker."\" value=\"Delete\"/>";
-						$current = count($myarray);
-						$myarray = array_slice($myarray, 2, $current - 2);
-						$mainarray[]=$temparray;
-						$tracker = $tracker + 1;
+					print("<form action='editphoto.php' method='post' id='pickevent' name='pickevent'>");
+					print("Event:<select name='event' id='event'>");
+					$mysqli= new mysqli('', 'Renas_fangirls', 'wh83rq01vpu', 'info230_SP13FP_Renas_fangirls');
+					$result= $mysqli->query("SELECT * FROM Events WHERE e_date < CURDATE()");
+					while($array= $result->fetch_assoc()) {
+						print("<option value='".$array['eid']."'>".$array['e_name']."</option>");
 					}
-					$atable->tabledata=$mainarray;
-					$atable->displayTable();
-					
-					print("</div>");
-					
-					print("<div id=\"container2\">");
-					print("<h2>Add New Announcement</h2>");
-				
-					print("<form action=\"newannouncement.php\" method=\"get\" >");
-						print("<label>Title:</label>");
-						print("<input type=\"text\" name=\"title\" id=\"title\" /><br /><br />");
-						print("<label>Announcement:</label><br />");
-						print("<textarea name=\"announcement\" id=\"announcement\" rows=\"15\" cols=\"40\"></textarea><br /><br />");
-						print("<input type=\"button\" value=\"Add This Announcement\" id=\"addButton\" name=\"addButton\" />"); 
-					print("</form>"); 
-				
-					print("</div>");
+					print("</select><br />
+					<input type='submit' name='submitEvent' id='submitEvent' value='Edit This Event'/>
+					</form>");
+					$mysqli->close();
 				
 				}
-				//the user has not logged in
-				else{
+				else {
 					print("<p>You haven't logged in yet. Please log in at <a href=\"admin.php\">this page</a></p>");
 				}
-
+			
+			?>
+			
+			<!--This is for aphorisms in case we want to use it-->
+			<?php
+				// //the user has logged in
+				// if(isset($_SESSION['user'])){
+					// //the user has submitted a new aphorism
+					// if(isset($_POST['submit'])){
+						// if(htmlentities($_POST['aphorism'])!=""){
+							// //ADD APHORISM TO DATABASE
+							// print("<p>You have successfully added an aphorism to the database. Feel free to add another one.</p>");
+						// }
+						// else{
+							// print("<p>You left the aphorism field blank. Please try again.<p>");
+						// }
+					// }
+					// //the user has not submitted a new aphorism yet
+					// else {
+						// print("<p>Use the following form to submit a new aphorism to the database.</p>");
+					// }
+					// //include form to add aphorism as long as the user has logged in
+					// print("<form action=\"edit.php\" method=\"post\">");
+							// print("<p>");
+								// print("Aphorism:<input type=\"text\" name=\"aphorism\"/><br />");
+								// print("<input type=\"submit\" name=\"submit\" value=\"Submit New Aphorism\"/>");
+							// print("</p>");
+					// print("</form>");
+				// }
+				// //the user has not logged in
+				// else{
+					// print("<p>You haven't logged in yet. Please log in at <a href=\"admin.php\">this page</a></p>");
+					
+					// print("<form enctype='multipart/form-data' action='upload.php' id='upform' name='upform' method='POST'>
+					// Choose a photo (gif, jpeg/jpg, or png under 5MB) to upload:<br/>
+					// <input type='file' name='photo' id='photo'/><br/>
+					// Please enter caption:<br/>
+					// <textarea name='ucaption' maxlength='255' rows='5' cols='40' wrap='virtual' form='upform'></textarea><br/>
+					// Select an album:<select name='album'>");
+					// include("albumdropdown.php");
+					// print("<option value='1'>test</option>");
+					// print("</select><br/>
+					// <input type='submit' name='upload' value='Upload Photo' />
+					// </form>
+					// <br/>");
+				// }
 			?>
 			
 			
-
-			
 		</div>
+		
+		
 		
 		</div>
 		
 		</div>
-		
 		
 		<?php
 			require("inc/footer.php");

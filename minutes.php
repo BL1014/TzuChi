@@ -63,8 +63,8 @@
 								</li>
 								<li><a href="minutes.php">EBOARD MINUTES</a></li>
 								<li><a href="announcements.php">ANNOUNCEMENTS</a></li>
-								<li><a href="photos.php">EVENTS AND PHOTOS</a></li>
-								<li><a href="aphorisms.php">APHORISMS</a></li>
+								<li><a href="new.php">NEW EVENTS/PHOTOS</a></li>
+								<li><a href="edit.php">EDIT EVENTS/PHOTOS</a></li>
 							</ul>
 					</li>
 				</ul>
@@ -75,11 +75,17 @@
 		
 		<div id="container">
 	
+			<div id="container0">
 			<h1>Eboard Minutes</h1>
+			</div>
 			
 			<?php
 				//the user has logged in
 				if(isset($_SESSION['user'])){
+				
+					print("<div id='container1'>");
+					print("<h2>Submit New Minutes</h2>");
+					
 					//the user submitted meeting minutes
 					if(isset($_POST['submit'])){
 						//the form inputs are complete
@@ -88,7 +94,7 @@
 							print("<p>You have successfully submitted your Eboard Meeting Minutes. Feel free to submit more minutes if needed.</p>");
 							//open file and write meeting minutes on it
 							$fp = fopen("files/minutes.txt", "a");
-							$string = "Minutes for: ".htmlentities($_POST['date'])."\n\n";
+							$string = "\n\nMinutes for: ".htmlentities($_POST['date'])."\n\n";
 							fputs($fp, $string);
 							$string2 = htmlentities($_POST['message']);
 							$moresentences = true;
@@ -103,7 +109,6 @@
 									$string2 = substr($string2, $position+2);
 								}
 							}
-							fputs($fp, "\n\n");
 						}
 						//the form inputs are incomplete or in an incorrect format
 						else {
@@ -117,11 +122,40 @@
 					//include form to submit meeting minutes as long as the user has logged in
 					print("<form action=\"minutes.php\" method=\"post\">");
 							print("<p>");
-								print("Date (YYYY-MM-DD):<input type=\"text\" name=\"date\"/><br />");
-								print("Minutes: <textarea name=\"message\" rows=\"10\" cols=\"50\"></textarea><br /><br />");
+								print("Date (required):<input type='date' name='date'><br/>");
+								print("Minutes (required): <br /><textarea name=\"message\" rows=\"10\" cols=\"40\"></textarea><br /><br />");
 								print("<input type=\"submit\" name=\"submit\" value=\"Submit Minutes\"/>");
 							print("</p>");
 					print("</form>");
+					
+					print("</div>");
+					
+					print("<div id='container2'>");
+					print("<h2>Most Recent Minutes</h2>");
+					
+					$myarray = file("files/minutes.txt");
+					$index= sizeof($myarray) - 2;
+					$truth=true;
+					$temparray = array();
+					
+					while ($truth) {
+						if(preg_match("/./", $myarray[$index])){
+							$temparray[]=$myarray[$index];
+							$index= $index-1;
+						}
+						else {$truth=false;}
+					}
+					
+					$temparray[]=$myarray[$index-1]."<br />";
+					
+					$index2 = sizeof($temparray) - 1;
+					
+					while ($index2>=0) {
+						print("".$temparray[$index2]."<br />");
+						$index2 = $index2 -1;
+					}
+					
+					print("</div>");
 				}
 				//the user has not logged in
 				else{

@@ -132,8 +132,8 @@
 								</li>
 								<li><a href="minutes.php">EBOARD MINUTES</a></li>
 								<li><a href="announcements.php">ANNOUNCEMENTS</a></li>
-								<li><a href="photos.php">EVENTS AND PHOTOS</a></li>
-								<li><a href="aphorisms.php">APHORISMS</a></li>
+								<li><a href="new.php">NEW EVENTS/PHOTOS</a></li>
+								<li><a href="edit.php">EDIT EVENTS/PHOTOS</a></li>
 							</ul>
 					</li>
 				</ul>
